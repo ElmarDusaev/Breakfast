@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\Breakfast\\Breakfast.csproj": {}
+    "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\Breakfast.csproj": {}
   },
   "projects": {
-    "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\Breakfast\\Breakfast.csproj": {
+    "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\Breakfast.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\Breakfast\\Breakfast.csproj",
+        "projectUniqueName": "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\Breakfast.csproj",
         "projectName": "Breakfast",
-        "projectPath": "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\Breakfast\\Breakfast.csproj",
+        "projectPath": "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\Breakfast.csproj",
         "packagesPath": "C:\\Users\\WgHost\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\Breakfast\\obj\\",
+        "outputPath": "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\"
