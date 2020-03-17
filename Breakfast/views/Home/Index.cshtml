@@ -1,0 +1,305 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dream Breakfast</title>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/normalize.css" />
+</head>
+
+<body>
+    <!-- Шапка -->
+    <header class="main-header">
+        <a class="main-header__logo">
+            <img class="main-header__logo-image1" width="40" height="40" src="img/Layer 4.png" alt="Завтрак36.ru" />
+            <img class="main-header__logo-image2" width="250" height="50" src="img/logo_min.gif" alt="Завтрак36.ru" />
+        </a>
+
+        <nav class="main-nav">
+            <button class="main-nav__toggle" type="button">Открыть меню(моб-версия)</button>
+            <div class="main-nav__wrapper">
+                <ul class="main-nav__list site-list">
+                    <li class="site-list__item"><a href="catalog.html">Каталог</a></li>
+                    <li class="site-list__item"><a href="#">Корзина</a></li>
+                    </li>
+                </ul>
+                <ul class="main-nav__list user-list">
+                    <li class="user-lit__item"><a href="user-lit__login">Вход</a></li>
+                </ul>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Главный контейнер -->
+    <main class="main-container">
+        <h1 class="visually-hidden">Завтрак36.ru - Правильный завтрак</h1>
+
+        <section class="stats">
+            <header class="stats__header">
+                <h2 class="visually-hidden">Статистика Завтрак36.ru</h2>
+                <b class="stats__slogan">Завтрак у нас это выгодно и вкусно!</b>
+                <p class="stats__intro">Каждый завтрак требует точного подхода. Обратимся к статистике</p>
+            </header>
+            <table class="stats__list">
+                <tr>
+                    <td class="stats__value">1500</td>
+                    <td class="stats__field">Количество клиентов</td>
+                </tr>
+                <tr>
+                    <td class="stats__value">9</td>
+                    <td class="stats__field">Видов завтраков</td>
+                </tr>
+                <tr>
+                    <td class="stats__value">50000</td>
+                    <td class="stats__field">Лайков</td>
+                </tr>
+                <tr>
+                    <td class="stats__value">500</td>
+                    <td class="stats__field">Поставщиков продуктов</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="advantage">
+            <div class="advantage__wrapper slider">
+                <h2 class="visually-hidden">Преимущества</h2>
+                <ul class="advantage__list">
+                    <li class="advantage__item advantage__item--fast slider__item">
+                        <h3 class="advantage__title">Быстро</h3>
+                        <p class="advantage__description">
+                            Мы делаем свою работу быстро. Доставляю завтраки лучшие водители города.
+                        </p>
+                    </li>
+                    <li class="advantage__item">
+                        <h3 class="advantage__title advantage__item--tasty slider__item">Вкусно</h3>
+                        <p class="advantage__description">
+                            Наши завтраки очень вкусные. Они будут отличным началом нового дня.
+                        </p>
+                    </li>
+                    <li class="advantage__item">
+                        <h3 class="advantage__title advantage__item--quality slider__item">Качественно</h3>
+                        <p class="advantage__description">
+                            Наши завтраки делаются только из свежих продуктов и лучшими поварами города.
+                        </p>
+                    </li>
+                </ul>
+                <p class="reviews__toggles slider__toggles">
+                    <button class="slider__toggle" type="button">1</button>
+                    <button class="slider__toggle" type="button">2</button>
+                    <button class="slider__toggle" type="button">3</button>
+                </p>
+            </div>
+        </section>
+
+        <section class="news">
+            <div class="news__wrapper">
+                <h2 class="news__title">Новости и акции</h2>
+                <ul class="news__list">
+                    <li class="news__item">
+                        <time class="news__date" datetime="2020-03-17">
+                            <b class="news__day">17</b> марта
+                        </time>
+                        <p class="news__text">Акция каждую среду. Два завтрака по цене одного</p>
+                    </li>
+                    <li class="news__item">
+                        <time class="news__date" datetime="2020-03-13">
+                            <b class="news__day">13</b> марта
+                        </time>
+                        <p class="news__text">К нам в команду добавился еще один профессиональный повар Валентин Сироткин</p>
+                    </li>
+                </ul>
+                <a class="news__to-all button" href="#">Показать все</a>
+            </div>
+        </section>
+
+        <section class="catalog">
+            <div class="catalog__wrapper slider"></div>
+            <h2 class="visually-hidden">Список средств для ухода</h2>
+            <ul class="catalog-list">
+                <li class="catalog__item slider__item hit">
+                    <h3>
+                        <span class="catalog__title">"Завтрак легкий"</span>
+                    </h3>
+                    <p class="catalog__item__image">
+                        <img src="" width="220" height="165" alt="Завтрак легкий" />
+                    </p>
+                    <p class="catalog__item__structure">
+                        Состав:
+                    </p>
+                    <p class="catalog__item__price">
+                        <b>300 р</b>
+                    </p>
+                    <a class="button" href="#">Добавить в корзину</a>
+                </li>
+                <li class="catalog__item slider__item hit">
+                    <h3>
+                        <span class="catalog__title">"Завтрак Сила"</span>
+                    </h3>
+                    <p class="catalog__item__image">
+                        <img src="" width="220" height="165" alt="Завтрак легкий" />
+                    </p>
+                    <p class="catalog__item__structure">
+                        Состав:
+                    </p>
+                    <p class="catalog__item__price">
+                        <b>500 р</b>
+                    </p>
+                    <a class="button" href="#">Добавить в корзину</a>
+                </li>
+                <li class="catalog__item slider__item hit">
+                    <h3>
+                        <span class="catalog__title">"Завтрак Белковый коктейль"</span>
+                    </h3>
+                    <p class="catalog__item__image">
+                        <img src="" width="220" height="165" alt="Завтрак легкий" />
+                    </p>
+                    <p class="catalog__item__structure">
+                        Состав:
+                    </p>
+                    <p class="catalog__item__price">
+                        <b>700 р</b>
+                    </p>
+                    <a class="button" href="#">Добавить в корзину</a>
+                </li>
+                <li class="catalog__item slider__item hit">
+                    <h3>
+                        <span class="catalog__title">"Завтрак детский"</span>
+                    </h3>
+                    <p class="catalog__item__image">
+                        <img src="" width="220" height="165" alt="Завтрак легкий" />
+                    </p>
+                    <p class="catalog__item__structure">
+                        Состав:
+                    </p>
+                    <p class="catalog__item__price">
+                        <b>150 р</b>
+                    </p>
+                    <a class="button" href="#">Добавить в корзину</a>
+                </li>
+                <li class="catalog__item slider__item hit">
+                    <h3>
+                        <span class="catalog__title">"Завтрак Яичный ролл"</span>
+                    </h3>
+                    <p class="catalog__item__image">
+                        <img src="" width="220" height="165" alt="Завтрак легкий" />
+                    </p>
+                    <p class="catalog__item__structure">
+                        Состав:
+                    </p>
+                    <p class="catalog__item__price">
+                        <b>350 р</b>
+                    </p>
+                    <a class="button" href="#">Добавить в корзину</a>
+                </li>
+                <li class="catalog__item slider__item hit">
+                    <h3>
+                        <span class="catalog__title">"Завтрак Олимпийский"</span>
+                    </h3>
+                    <p class="catalog__item__image">
+                        <img src="" width="220" height="165" alt="Завтрак легкий" />
+                    </p>
+                    <p class="catalog__item__structure">
+                        Состав:
+                    </p>
+                    <p class="catalog__item__price">
+                        <b>500 р</b>
+                    </p>
+                    <a class="button" href="#">Добавить в корзину</a>
+                </li>
+                <li class="catalog__item slider__item hit">
+                    <h3>
+                        <span class="catalog__title">"Завтрак Гренки с картофелем"</span>
+                    </h3>
+                    <p class="catalog__item__image">
+                        <img src="" width="220" height="165" alt="Завтрак легкий" />
+                    </p>
+                    <p class="catalog__item__structure">
+                        Состав:
+                    </p>
+                    <p class="catalog__item__price">
+                        <b>550 р</b>
+                    </p>
+                    <a class="button" href="#">Добавить в корзину</a>
+                </li>
+                <li class="catalog__item slider__item hit">
+                    <h3>
+                        <span class="catalog__title">"Завтрак Бутерброды"</span>
+                    </h3>
+                    <p class="catalog__item__image">
+                        <img src="" width="220" height="165" alt="Завтрак легкий" />
+                    </p>
+                    <p class="catalog__item__structure">
+                        Состав:
+                    </p>
+                    <p class="catalog__item__price">
+                        <b>300 р</b>
+                    </p>
+                    <a class="button" href="#">Добавить в корзину</a>
+                </li>
+                <li class="catalog__item slider__item hit">
+                    <h3>
+                        <span class="catalog__title">"Сырники-пампушки"</span>
+                    </h3>
+                    <p class="catalog__item__image">
+                        <img src="" width="220" height="165" alt="Завтрак легкий" />
+                    </p>
+                    <p class="catalog__item__structure">
+                        Состав:
+                    </p>
+                    <p class="catalog__item__price">
+                        <b>400 р</b>
+                    </p>
+                    <a class="button" href="#">Добавить в корзину</a>
+                </li>
+            </ul>
+            <p class="reviews__toggles slider__toggles">
+                <button class="slider__toggle" type="button">1</button>
+                <button class="slider__toggle" type="button">2</button>
+                <button class="slider__toggle" type="button">3</button>
+            </p>
+        </section>
+    </main>
+
+    <!-- Подвал -->
+    <footer class="main__footer">
+        <p class="footer__contacts">
+            Завтрак36.ru<br />
+            Адрес: г. Воронеж, Плехановская, д. 17/5 <br />
+            Телефон: +7 (900) 100-00-00
+        </p>
+        <div class="footer-social">
+            <p>Давайте дружить</p>
+            <ul>
+                <li><a class="social-button" href="#">Вконтакте</a></li>
+                <li><a class="social-button" href="#">Фейсбук</a></li>
+                <li><a class="social-button" href="#">Инстаграм</a></li>
+            </ul>
+        </div>
+        <div class="footer-copyright">
+            <p>Разработано: ...</p>
+        </div>
+    </footer>
+
+    <!--Модальные окна-->
+    <section class="modal modal-login">
+        <h2>Вход</h2>
+        <p>Введите свой логин и пароль.</p>
+        <!--Здесь будет форма-->
+        <span class="modal-close">x</span>
+    </section>
+    <section class="modal modal-basket">
+        <h2>Корзина</h2>
+        <!--Здесь будет форма-->
+        <span class="modal-close">x</span>
+    </section>
+</body>
+
+</html>
