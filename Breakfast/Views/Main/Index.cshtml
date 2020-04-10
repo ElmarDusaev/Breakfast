@@ -1,0 +1,129 @@
+﻿@model DashboardViewModel;
+
+<h1>Панель администратора</h1>
+@*@DateTime.Now.ToString("dd-MM-yyyy hh:mm")*@
+<hr />
+
+<div class="col-md-12">
+    <div class="row">
+
+        <div class="col-md-3">
+            <h5 class="text-success">Заказы</h5>
+            <hr />
+            <div class="card border-success">
+                <div class="card-header">Всего / Сегодня</div>
+                <div class="card-body text-success">
+                    <h2 class="card-title text-center">@Model.OrdersTotal / @Model.OrdersToday</h2>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="col-md-3">
+            <h5 class="text-warning">Наборка</h5>
+            <hr />
+            <div class="card border-warning">
+                <div class="card-header">Ожидает / Набирается</div>
+                <div class="card-body text-warning">
+                    <h2 class="card-title text-center">@Model.CompleteTotal / @Model.CompleteToday</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <h5 class="text-info">В пути</h5>
+            <hr />
+            <div class="card border-info">
+                <div class="card-header">Всего / Сегодня</div>
+                <div class="card-body text-info">
+                    <h2 class="card-title text-center">@Model.DeliveryTotal / @Model.DeliveryToday</h2>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <h5 class="text-danger">Отказы</h5>
+            <hr />
+            <div class="card border-danger">
+                <div class="card-header">Всего / Сегодня</div>
+                <div class="card-body text-danger">
+                    <h2 class="card-title text-center">@Model.RejectedTotal / @Model.CompleteToday</h2>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+
+<div class="col-md-12">
+
+    <div class="row">
+
+        <div class="col-md-6">
+            <canvas id="myChart1"></canvas>
+        </div>
+
+        <div class="col-md-6">
+            <canvas id="myChart2"></canvas>
+        </div>
+    </div>
+</div>
+
+
+@section Script{
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        var ctx1 = document.getElementById('myChart1').getContext('2d');
+        var ctx2 = document.getElementById('myChart2');
+
+        var chart1 = new Chart(ctx1, {
+            // The type of chart we want to create
+            type: 'line',
+
+            // The data for our dataset
+            data: {
+                labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль'],
+                datasets: [{
+                    label: 'Динамика заказов',
+                    backgroundColor: 'rgb(242, 110, 0)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [0, 10, 5, 2, 20, 30, 45]
+                }]
+            },
+
+            // Configuration options go here
+            options: {}
+        });
+
+        data = {
+            datasets: [{
+                data: [10, 20, 30],
+                backgroundColor: [
+                 'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)'
+                ]
+            }],
+
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: [
+                'Red',
+                'Yellow',
+                'Blue'
+            ]
+        };
+
+
+        var myPieChart = new Chart(ctx2, {
+            type: 'doughnut',
+            data: data,
+            options: {}
+        });
+
+    </script>
+}
