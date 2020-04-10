@@ -1,25 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\Breakfast.csproj": {}
+    "D:\\PROJECTS\\VITA 2020\\breakfast\\Breakfast\\Breakfast.csproj": {}
   },
   "projects": {
-    "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\Breakfast.csproj": {
+    "D:\\PROJECTS\\VITA 2020\\breakfast\\Breakfast\\Breakfast.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\Breakfast.csproj",
+        "projectUniqueName": "D:\\PROJECTS\\VITA 2020\\breakfast\\Breakfast\\Breakfast.csproj",
         "projectName": "Breakfast",
-        "projectPath": "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\Breakfast.csproj",
-        "packagesPath": "C:\\Users\\WgHost\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\WgHost\\Desktop\\ProjectRelex\\Breakfast\\breakfast\\Breakfast\\obj\\",
+        "projectPath": "D:\\PROJECTS\\VITA 2020\\breakfast\\Breakfast\\Breakfast.csproj",
+        "packagesPath": "C:\\Users\\Elmar Dusaev\\.nuget\\packages\\",
+        "outputPath": "D:\\PROJECTS\\VITA 2020\\breakfast\\Breakfast\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\WgHost\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\Elmar Dusaev\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -42,6 +41,34 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
               "version": "[3.1.1, )"
@@ -65,7 +92,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.200\\RuntimeIdentifierGraph.json"
         }
       }
     }
