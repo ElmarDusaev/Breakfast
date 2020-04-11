@@ -36,7 +36,8 @@ namespace Breakfast
                 option.Password.RequireLowercase = false;
             }).AddEntityFrameworkStores<BreakfastDbContext>().AddDefaultTokenProviders();
 
-            services.ConfigureApplicationCookie(options => {
+            services.ConfigureApplicationCookie(options =>
+            {
                 options.LoginPath = "/Account/Login";
             });
 
@@ -50,6 +51,7 @@ namespace Breakfast
                     .AllowCredentials());
             });
 
+
             services.AddMvc().AddRazorRuntimeCompilation();
 
         }
@@ -61,7 +63,6 @@ namespace Breakfast
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseClientToken();
 
             app.UseStaticFiles();
             app.UseCors();
@@ -69,17 +70,9 @@ namespace Breakfast
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseClientToken();
             app.UseEndpoints(endpoints =>
             {
-
-
-                //endpoints.MapAreaControllerRoute(
-                //    name: "Admin",
-                //    areaName: "Admin",
-                //    pattern: "Admin/{controller=Main}/{action=Index}/{id?}"
-                //        );
-
 
                 endpoints.MapControllerRoute(
                     name: "Default",

@@ -1,5 +1,7 @@
-﻿@model DashboardViewModel;
-
+﻿    @model DashboardViewModel;
+@{
+    ViewBag.Title = "Панель администратора";
+}
 <h1>Панель администратора</h1>
 @*@DateTime.Now.ToString("dd-MM-yyyy hh:mm")*@
 <hr />
@@ -78,6 +80,8 @@
 @section Script{
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <script>
+        let months = @(Html.Raw(Json.Serialize(Model.MonthName)));
+        let data = @(Html.Raw(Json.Serialize(Model.MonthValue)));
         var ctx1 = document.getElementById('myChart1').getContext('2d');
         var ctx2 = document.getElementById('myChart2');
 
@@ -87,12 +91,12 @@
 
             // The data for our dataset
             data: {
-                labels: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль'],
+                labels: months,
                 datasets: [{
                     label: 'Динамика заказов',
                     backgroundColor: 'rgb(242, 110, 0)',
                     borderColor: 'rgb(255, 99, 132)',
-                    data: [0, 10, 5, 2, 20, 30, 45]
+                    data: data
                 }]
             },
 

@@ -26,9 +26,11 @@ namespace Breakfast.Models
             BreakfasDbInitizalize init = new BreakfasDbInitizalize(modelBuilder);
             
             init.AddAdmin();
+            init.AddClient();
             init.AddCategory();
             init.AddProducts();
             init.AddOrder();
+            init.AddOrderDtl();
 
         }
 

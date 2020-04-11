@@ -21,63 +21,67 @@ namespace Breakfast.Models
 
         internal void AddCategory()
         {
-            modelBuilder.Entity<Category>().HasData(new Category { Id = 1, Name = "Завтраки" });
+            modelBuilder.Entity<Category>()
+                .HasData(
+                new Category { Id = 1, Name = "#Завтраки" },
+                new Category { Id = 2, Name = "#Десерты" },
+                new Category { Id = 3, Name = "#Соки" },
+                new Category { Id = 4, Name = "#Хлеб" }
+                );
         }
 
         internal void AddProducts()
         {
+
+            #region Завтраки
             modelBuilder.Entity<Product>().HasData(
 
                 new Product
                 {
                     Id = 1,
                     CategoryId = 1,
-                    Name = "Классическая глазунья",
-                    Description = @"Приготовить яичницу может любой человек, даже совершенно далекий от кулинарии. Сытно, просто, быстро и очень вкусно — именно так, коротко и ясно, можно охарактеризовать это блюдо. Чтобы сохранить желтки яиц целыми, достаточно просто аккуратно вылить яйцо на сковороду с маслом и поджарить их с одной или двух сторон. В зависимости от способа приготовления различают следующие виды яичницы-глазуньи: яичница-глазунья классическая; с беконом; яичница в форме сердца, цветка, солнца и т. д.; яйцо, поджаренное в хлебе; яичница, запеченная в помидорах, булочке или картофеле; яйцо в перце. И это не считая национальных блюд, которые готовят на разных кухнях мира. Способов приготовления яичницы, на самом деле, очень много. Все зависит от фантазии и финансовых возможностей самого человека.",
-                    Price = 300,
+                    Name = "Яичница в хлебе",
+                    Price = 90,
                     IsHit = true,
                     Stars = 4.9,
                     Status = ProductStatus.Active,
-                    Image = "https://omj.ru/wp-content/uploads/2017/04/8ffa491e973b0c0fafc37397c73e633c.jpg"
+                    Image = "https://i.ytimg.com/vi/s0L8hrM6dXw/maxresdefault.jpg"
                 },
 
                 new Product
                 {
                     Id = 2,
                     CategoryId = 1,
-                    Name = "Яичница-болтунья",
-                    Description = @"Полная противоположность глазунье — яичница-болтунья, при приготовлении которой яйца сначала взбивают с помощью вилки с солью, а затем уже обжаривают на сковороде со сливочным маслом. В зависимости от особенностей процесса приготовления бывают разные виды яичницы. Рецепты из приготовления заключаются в следующем: Яичница-болтунья по-английски. Для приготовления блюда 2 яйца взбивают вилкой со щепоткой соли и выливают на сковороду с разогретым сливочным маслом (20 г). В процессе жарки их постоянно перемешивают лопаткой, чтобы формировались слегка обжаренные комочки. Готовую яичницу рекомендуется подавать, выложив прямо на обжаренный тост. Яичница-болтунья по-французски. Для приготовления такого блюда 4 яйца взбивают венчиком с солью, а затем прямо в миске нагревают на водяной бане до готовности. Время приготовления такой яичницы составляет не менее 10 минут, при этом ее также необходимо перемешивать лопаткой для образования комочков. Общий принцип приготовления болтуньи — ни желтки, ни белки не должны оставаться целыми.",
-                    Price = 850,
+                    Name = "Яичница по‑французски",
+                    Price = 100,
                     IsHit = false,
                     Stars = 4.6,
                     Status = ProductStatus.Active,
-                    Image = "https://omj.ru/wp-content/uploads/2017/04/0d04a1f18f9903f1da702c163e7553f5.jpg"
+                    Image = "https://foodandmood.com.ua/i/70/97/05/709705/gallery/e6a40ddde8c4b09d1c72dcdaae662a96-quality_75Xresize_1Xallow_enlarge_0Xw_700Xh_700.jpg"
                 },
 
                 new Product
                 {
                     Id = 3,
                     CategoryId = 1,
-                    Name = "Яичница с сосиской в виде сердца",
-                    Description = @"Одним из самых оригинальных и одновременно простых вариантов приготовления глазуньи является яичница с сосиской в форме сердца. И совсем необязательно ждать подходящего праздника, чтобы порадовать таким завтраком свою вторую половинку. Яичница с сосиской в виде сердца по времени готовится ничуть не дольше традиционной глазуньи с сосиской. При этом выглядит блюдо намного аппетитнее и интереснее. Сосиска разрезается вдоль таким способом, чтобы один край ее оставался непрорезанным. Разрезанная сосиска разделяется на две половинки, выворачивается в обратную сторону и выкладывается в форме сердца. Свободные края сосиски скрепляются зубочисткой. Налить на сковороду немного растительного масла, разогреть его и выложить сердечко из сосиски на сковороду. Немного обжарить сердечко с одной стороны, перевернуть на другую и разбить в центр яйцо. Добавить немного соли и перца по вкусу. Жарить яичницу до готовности, затем переложить на тарелку, украсить зеленью и тостами. Существуют и другие виды яичниц с сосиской, которые при подаче на стол выглядят также оригинально. Ниже рассмотрим пошаговое приготовление некоторых из них.",
-                    Price = 1250,
+                    Name = "Яичница в помидоре",
+                    Price = 110,
                     IsHit = false,
                     Stars = 4.4,
                     Status = ProductStatus.Active,
-                    Image = "https://omj.ru/wp-content/uploads/2017/04/d7d4038d7da2cfbf2589a034b4004501.jpg"
+                    Image = "https://img1.liveinternet.ru/images/attach/d/0/143/161/143161575_6425626_zavtrak_za_20_min_1.jpg"
                 },
 
                 new Product
                 {
                     Id = 4,
                     CategoryId = 1,
-                    Name = "Цветочная тема в яичнице",
-                    Description = @"Яйцо и сосиска — традиционное сочетание продуктов для приготовления яичницы. Но из этих двух ингредиентов можно легко сделать оригинальное блюдо. Яичница с сосиской в виде ромашки готовится в такой последовательности: Сосиска разрезается вдоль на 2 половинки. Затем на каждой части делаются надрезы, напоминающие бахрому. После этого обе половинки складываются в круг и скрепляются зубочистками. Из второй сосиски можно сделать еще пару цветов. Подготовленные сосиски выкладываются на сковороду с растительным маслом. В центр цветочка разбивается 1 яйцо. Желток яйца должен занять место серединки цветка. Как только яйца поджарятся их можно переложить на тарелку и украсить веточкой петрушки. Такая яичница с сосисками в виде цветочка станет отличным вариантом праздничного завтрака для женщины или ребенка. Приготовить ее совсем несложно и под силу каждому мужчине.",
-                    Price = 1550,
+                    Name = "Бульбяная яичница",
+                    Price = 135,
                     IsHit = false,
                     Stars = 4.2,
                     Status = ProductStatus.Active,
-                    Image = "https://omj.ru/wp-content/uploads/2017/04/785427770d9e097453e2db40cee911e4.jpg"
+                    Image = "https://elisheva.ru/uploads/posts/2016-11/1478615735_nezhnyi-omlet-s-gribami-i-syrom.jpg"
 
                 },
 
@@ -85,27 +89,819 @@ namespace Breakfast.Models
                 {
                     Id = 5,
                     CategoryId = 1,
-                    Name = "Яичница в хлебе",
-                    Description = @"Очень аккуратно и аппетитно смотрится яичница, имеющая четко обозначенные края. Чтобы белок не растекался безобразно по сковороде, а принял определенную форму, используют специальные ограничители. Эту функцию могут выполнять специальные силиконовые формы, сосиски, скрепленные зубочисткой определенным способом, овощи (перец, лук) и хлеб. Таким образом, получаются новые и оригинальные виды яичниц. Аппетитную и вкусную яичницу на сковороде можно поджарить одновременно с хлебом, получив таким способом интересную закуску, завтрак или перекус. Яичница в виде сердца в хлебе готовится в такой последовательности: Белый или ржаной хлеб нарезается кусочками толщиной 1−1,5 см. Также можно использовать уже нарезанный хлеб для тостов. При помощи вырубки для печенья в мякише вырезается отверстие. Также можно воспользоваться обычным ножом, но края формы могут получиться не такими аккуратными. В сковороде разогревается немного сливочного и растительного масла. В центр сковороды выкладывается кусочек хлеба и обжаривается с одной стороны до румяной корочки. Затем хлеб переворачивается на другую сторону и в сделанное вырубкой отверстие разбивается яйцо. Добавляется соль и перец. Яйцо жарится на сковороде около 5 минут. После этого яичницу рекомендуется поместить в разогретую до 180° духовку на 5 минут, чтобы белок хорошо загустел. Вместо вырубки для печенья в виде сердца можно использовать и другую форму, например, круг, звездочку, цветок.",
-                    Price = 1850,
+                    Name = "Яичница в перце",
+                    Price = 125,
                     IsHit = false,
                     Stars = 4.1,
                     Status = ProductStatus.Active,
+                    Image = "https://moi-kulinar.ru/uploads/posts/2018-07/1530946713_yaichnitsa-v-pertse.jpg"
+                },
+
+                new Product
+                {
+                    Id = 6,
+                    CategoryId = 1,
+                    Name = "Яичница в помидорах",
+                    Price = 220,
+                    IsHit = false,
+                    Stars = 4.2,
+                    Status = ProductStatus.Active,
                     Image = "https://omj.ru/wp-content/uploads/2017/04/4a1fa458fea1c74302fb2bf21b661a81.jpg"
+                },
+
+                new Product
+                {
+                    Id = 7,
+                    CategoryId = 1,
+                    Name = "Яичница по‑французски в хлебе",
+                    Price = 185,
+                    IsHit = false,
+                    Stars = 4.3,
+                    Status = ProductStatus.Active,
+                    Image = "https://foodman.club/wp-content/uploads/2017/10/21-5.jpg"
+                },
+
+                new Product
+                {
+                    Id = 8,
+                    CategoryId = 1,
+                    Name = "Яичница со сметаной",
+                    Price = 200,
+                    IsHit = false,
+                    Stars = 4.1,
+                    Status = ProductStatus.Active,
+                    Image = "https://cs8.pikabu.ru/post_img/2017/04/05/4/1491367487164439680.png"
+                },
+
+                new Product
+                {
+                    Id = 9,
+                    CategoryId = 1,
+                    Name = "Яичница-глазунья",
+                    Price = 185,
+                    IsHit = false,
+                    Stars = 4.4,
+                    Status = ProductStatus.Active,
+                    Image = "https://fannykitchen.com/image/ing/2299.jpg"
+                },
+
+                new Product
+                {
+                    Id = 10,
+                    CategoryId = 1,
+                    Name = "Яичница-болтунья со шпинатом",
+                    Price = 140,
+                    IsHit = false,
+                    Stars = 4.5,
+                    Status = ProductStatus.Active,
+                    Image = "https://cdn.segodnya.ua/img/article/11299/45_main_new.1523463015.jpg"
+                },
+
+                new Product
+                {
+                    Id = 11,
+                    CategoryId = 1,
+                    Name = "Яичница-болтунья",
+                    Price = 150,
+                    IsHit = false,
+                    Stars = 4.7,
+                    Status = ProductStatus.Active,
+                    Image = "https://www.owoman.ru/assets/images/cook/boltunya_iz_yaic2.jpg"
+                },
+
+                new Product
+                {
+                    Id = 12,
+                    CategoryId = 1,
+                    Name = "Яичница с брынзой",
+                    Price = 145,
+                    IsHit = false,
+                    Stars = 4.8,
+                    Status = ProductStatus.Active,
+                    Image = "https://imgtest.mir24.tv/uploaded/images/crops/2018/October/870x489_1x1_detail_crop_c2325328884af7e2fee9343cbbe83a13f13d6a347fd4b10a5b98255587d6845f.jpg"
+                },
+
+                new Product
+                {
+                    Id = 13,
+                    CategoryId = 1,
+                    Name = "Взбитая яичница",
+                    Price = 135,
+                    IsHit = false,
+                    Stars = 4.9,
+                    Status = ProductStatus.Active,
+                    Image = "https://foodmag.me/wp-content/uploads/2017/05/yaichnitsa-v-pertsah-1.jpg"
+                },
+
+                new Product
+                {
+                    Id = 14,
+                    CategoryId = 1,
+                    Name = "Яичница по‑баскски",
+                    Price = 210,
+                    IsHit = false,
+                    Stars = 4.2,
+                    Status = ProductStatus.Active,
+                    Image = "https://foodmag.me/wp-content/uploads/2017/05/yaichnitsa-v-pertsah-1-650x450.jpg"
+                },
+
+                new Product
+                {
+                    Id = 15,
+                    CategoryId = 1,
+                    Name = "Яичница по‑кончаловски",
+                    Price = 150,
+                    IsHit = false,
+                    Stars = 4.3,
+                    Status = ProductStatus.Active,
+                    Image = "https://media-cdn.tripadvisor.com/media/photo-s/08/9b/f2/3e/caption.jpg"
                 }
 
                 );
+            #endregion
+
+            #region Десерты
+            modelBuilder.Entity<Product>().HasData(
+
+                new Product
+                {
+                    Id = 16,
+                    CategoryId = 2,
+                    Name = "Классический чизкейк",
+                    Price = 250,
+                    IsHit = false,
+                    Stars = 4.1,
+                    Status = ProductStatus.Active,
+                    Image = "https://www.koolinar.ru/all_image/recipes/144/144777/recipe_1b7d00e6-ae0c-4d14-b3ee-fa3af188873c_large.jpg"
+                },
+
+                new Product
+                {
+                    Id = 17,
+                    CategoryId = 2,
+                    Name = "Сметанный торт",
+                    Price = 250,
+                    IsHit = false,
+                    Stars = 4.2,
+                    Status = ProductStatus.Active,
+                    Image = "https://sovkusom.ru/wp-content/uploads/recepty/k/kak-prigotovit-smetannyi-tort-na-skovorode/thumb-840x440.jpg"
+                },
+
+                new Product
+                {
+                    Id = 18,
+                    CategoryId = 2,
+                    Name = "Шоколадные маффины",
+                    Price = 250,
+                    IsHit = false,
+                    Stars = 4.3,
+                    Status = ProductStatus.Active,
+                    Image = "https://www.koolinar.ru/all_image/recipes/144/144903/recipe_3865e7be-2722-40a3-87a7-4634c5dfced4_large.jpg"
+                }
+
+            );
+            #endregion
+
+            #region Соки
+            modelBuilder.Entity<Product>().HasData(
+            new Product
+            {
+                Id = 19,
+                CategoryId = 3,
+                Name = "Свежевыжатый гранатовый сок",
+                Price = 100,
+                IsHit = false,
+                Stars = 4.8,
+                Status = ProductStatus.Active,
+                Image = "https://img03.rl0.ru/7ecccd2ce12010f05a4e3f36a6fbb120/c615x400i/news.rambler.ru/img/2019/01/12025238.761283.5915.jpeg"
+            },
+            new Product
+            {
+                Id = 20,
+                CategoryId = 3,
+                Name = "Свежевыжатый апельсиновый сок",
+                Price = 80,
+                IsHit = false,
+                Stars = 4.7,
+                Status = ProductStatus.Active,
+                Image = "https://polzavred-edi.ru/wp-content/uploads/2019/06/polza-i-vred-apelsinovogo-soka.jpg"
+            },
+            new Product
+            {
+                Id = 21,
+                CategoryId = 3,
+                Name = "Свежевыжатый виноградный сок",
+                Price = 80,
+                IsHit = false,
+                Stars = 4.7,
+                Status = ProductStatus.Active,
+                Image = "https://www.inmoment.ru/img/health-body/grapes-juice1.jpg"
+            },
+            new Product
+            {
+                Id = 22,
+                CategoryId = 3,
+                Name = "Свежевыжатый ананасовый сок",
+                Price = 80,
+                IsHit = false,
+                Stars = 4.7,
+                Status = ProductStatus.Active,
+                Image = "https://cafesahara.ru/upload/iblock/7ed/7eddcb30773af9e076d4d6ae8bc6a96a.jpg"
             }
+                );
+            #endregion
+
+            #region Хлеб
+            modelBuilder.Entity<Product>().HasData(
+            new Product
+            {
+                Id = 23,
+                CategoryId = 4,
+                Name = "Белый хлеб",
+                Price = 55,
+                IsHit = false,
+                Stars = 4.1,
+                Status = ProductStatus.Active,
+                Image = "http://russian7.ru/wp-content/uploads/2013/03/13.jpg"
+            },
+            new Product
+            {
+                Id = 24,
+                CategoryId = 4,
+                Name = "Черный хлеб",
+                Price = 45,
+                IsHit = false,
+                Stars = 4.3,
+                Status = ProductStatus.Active,
+                Image = "http://russian7.ru/wp-content/uploads/2013/03/22.jpg"
+            },
+            new Product
+            {
+                Id = 25,
+                CategoryId = 4,
+                Name = "Красносельский хлеб",
+                Price = 65,
+                IsHit = false,
+                Stars = 4.2,
+                Status = ProductStatus.Active,
+                Image = "http://russian7.ru/wp-content/uploads/2013/03/22.jpg"
+            },
+            new Product
+            {
+                Id = 26,
+                CategoryId = 4,
+                Name = "Заварной хлеб",
+                Price = 75,
+                IsHit = false,
+                Stars = 4.3,
+                Status = ProductStatus.Active,
+                Image = "http://russian7.ru/wp-content/uploads/2013/03/7_russkix_xlebov.jpg"
+            },
+            new Product
+            {
+                Id = 27,
+                CategoryId = 4,
+                Name = "Бородинский хлеб",
+                Price = 80,
+                IsHit = false,
+                Stars = 4.4,
+                Status = ProductStatus.Active,
+                Image = "http://russian7.ru/wp-content/uploads/2013/03/53.jpg"
+            },
+            new Product
+            {
+                Id = 28,
+                CategoryId = 4,
+                Name = "Московский боярский хлеб",
+                Price = 70,
+                IsHit = false,
+                Stars = 4.5,
+                Status = ProductStatus.Active,
+                Image = "http://russian7.ru/wp-content/uploads/2013/03/63.jpg"
+            },
+            new Product
+            {
+                Id = 29,
+                CategoryId = 4,
+                Name = "Стародубский хлеб",
+                Price = 45,
+                IsHit = false,
+                Stars = 4.6,
+                Status = ProductStatus.Active,
+                Image = "http://russian7.ru/wp-content/uploads/2013/03/81.jpg"
+            }
+                );
+            #endregion
+
+        }
 
         internal void AddOrder()
         {
+            modelBuilder.Entity<OrderHdr>().HasData(
+                new OrderHdr
+                {
+                    Id = 1,
+                    ClientId = 1,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Невилл Долгопупс",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 1",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 1, 10),
+                    Sum = 120
+                },
+
+                new OrderHdr
+                {
+                    Id = 2,
+                    ClientId = 2,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Сириус Блек",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 2",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 2, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 3,
+                    ClientId = 3,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Гермиона Грейнджер",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 3",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Delivery,
+                    DeliveryDateTime = new DateTime(2020, 3, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 4,
+                    ClientId = 4,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Гарри Поттер",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 4",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.InProgress,
+                    DeliveryDateTime = new DateTime(2020, 4, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 5,
+                    ClientId = 5,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Рональд Уизли",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 5",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Rejected,
+                    DeliveryDateTime = new DateTime(2020, 5, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 6,
+                    ClientId = 6,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Игорь Николев",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 6",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Rejected,
+                    DeliveryDateTime = new DateTime(2020, 6, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 7,
+                    ClientId = 7,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Альбус Дамблдор",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 7",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Requested,
+                    DeliveryDateTime = new DateTime(2020, 7, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 8,
+                    ClientId = 1,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Невилл Долгопупс",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 1",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Requested,
+                    DeliveryDateTime = new DateTime(2020, 8, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 9,
+                    ClientId = 2,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Сириус Блек",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 2",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Requested,
+                    DeliveryDateTime = new DateTime(2020, 9, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 10,
+                    ClientId = 3,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Гермиона Грейнджер",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 3",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Requested,
+                    DeliveryDateTime = new DateTime(2020, 10, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 11,
+                    ClientId = 4,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Гарри Поттер",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 4",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 11, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 12,
+                    ClientId = 5,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Рональд Уизли",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 5",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Rejected,
+                    DeliveryDateTime = new DateTime(2020, 12, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 13,
+                    ClientId = 6,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Игорь Николев",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 6",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Rejected,
+                    DeliveryDateTime = new DateTime(2020, 1, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 14,
+                    ClientId = 7,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Альбус Дамблдор",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 7",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.InProgress,
+                    DeliveryDateTime = new DateTime(2020, 1, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 15,
+                    ClientId = 1,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Невилл Долгопупс",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 1",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.InProgress,
+                    DeliveryDateTime = new DateTime(2020, 1, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 16,
+                    ClientId = 1,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Невилл Долгопупс",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 1",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 2, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 17,
+                    ClientId = 2,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Сириус Блек",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 2",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 4, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 18,
+                    ClientId = 3,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Гермиона Грейнджер",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 3",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Delivery,
+                    DeliveryDateTime = new DateTime(2020, 5, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 19,
+                    ClientId = 3,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Гермиона Грейнджер",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 3",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Rejected,
+                    DeliveryDateTime = new DateTime(2020, 5, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 20,
+                    ClientId = 4,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Гарри Поттер",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 4",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Requested,
+                    DeliveryDateTime = new DateTime(2020, 5, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 21,
+                    ClientId = 5,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Рональд Уизли",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 5",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 5, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 22,
+                    ClientId = 5,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Рональд Уизли",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 5",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 6, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 23,
+                    ClientId = 7,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Альбус Дамблдор",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 7",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 7, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 24,
+                    ClientId = 7,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Альбус Дамблдор",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 7",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 7, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 25,
+                    ClientId = 7,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Альбус Дамблдор",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 7",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 7, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 26,
+                    ClientId = 7,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Альбус Дамблдор",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 7",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 8, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 27,
+                    ClientId = 2,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Сириус Блек",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 2",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 9, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 28,
+                    ClientId = 5,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Рональд Уизли",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 5",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 9, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 29,
+                    ClientId = 5,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Рональд Уизли",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 5",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 10, 10),
+                    Sum = 120
+                },
+
+
+                new OrderHdr
+                {
+                    Id = 30,
+                    ClientId = 4,
+                    CreatedDate = DateTime.Now,
+                    ClientName = "Игорь Николев",
+                    Address = "Школа Чародейства и Волшебства Хогвартс 4",
+                    Latitude = 15,
+                    Longtitude = 16,
+                    Phone = "1234567890",
+                    Status = OrderHdrStatus.Done,
+                    DeliveryDateTime = new DateTime(2020, 12, 10),
+                    Sum = 120
+                }
+
+            );
+        }
+        internal void AddOrderDtl()
+        {
+
         }
 
+        internal void AddClient()
+        {
+            modelBuilder.Entity<Client>().HasData(
+                new Client { Id = 1, ClientToken = Guid.NewGuid().ToString() },
+                new Client { Id = 2, ClientToken = Guid.NewGuid().ToString() },
+                new Client { Id = 3, ClientToken = Guid.NewGuid().ToString() },
+                new Client { Id = 4, ClientToken = Guid.NewGuid().ToString() },
+                new Client { Id = 5, ClientToken = Guid.NewGuid().ToString() },
+                new Client { Id = 6, ClientToken = Guid.NewGuid().ToString() },
+                new Client { Id = 7, ClientToken = Guid.NewGuid().ToString() }
+                );
+        }
+                        
         internal void AddAdmin()
         {
             var UserId = Guid.NewGuid().ToString();
 
-            var user = new IdentityUser {
+            var user = new IdentityUser
+            {
                 Id = UserId,
                 UserName = "admin",
                 Email = "admin@admin.com",

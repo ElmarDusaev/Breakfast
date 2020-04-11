@@ -10,9 +10,7 @@ using Breakfast.ViewModels;
 
 namespace Breakfast.Controllers
 {
-    /// <summary>
-    /// API для заказа
-    /// </summary>
+    [Authorize]
     public class OrderController: Controller
     {
         BreakfastDbContext context;
@@ -29,6 +27,7 @@ namespace Breakfast.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult Create([FromBody] OrderInformation orderInformation)
         {
 
@@ -37,6 +36,8 @@ namespace Breakfast.Controllers
 
             var client = Request.GetClient(context);
             var basket = (from i in context.Basket where i.ClientId == client.Id select new OrderDtl { Price = i.Price, Product = i.Product, Qty = i.Qty, Status = OrderDtlStatus.Wait }).ToList();
+            
+            if (basket == null) return BadRequest();
 
             //Todo: нужно подключить Automapper
             OrderHdr orderHdr = new OrderHdr();
@@ -62,7 +63,6 @@ namespace Breakfast.Controllers
         }
 
 
-        [Authorize]
         public IActionResult Index()
         {
             var orders = from i in context.OrderHdrs.ToList()

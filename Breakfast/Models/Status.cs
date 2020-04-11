@@ -13,9 +13,9 @@ namespace Breakfast.Models
     /// </summary>
     public enum ProductStatus
     {
-        [Description("Нет в наличии")]
+        [Description("Активна")]
         Inactive, 
-        [Description("Есть в наличии")]
+        [Description("Отключена")]
         Active
     }
 

@@ -189,7 +189,7 @@ namespace Breakfast.Migrations
                     Stars = table.Column<double>(nullable: false),
                     Price = table.Column<double>(nullable: false),
                     IsHit = table.Column<bool>(nullable: false),
-                    Image = table.Column<string>(maxLength: 150, nullable: true),
+                    Image = table.Column<string>(maxLength: 550, nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false)
                 },
@@ -218,7 +218,8 @@ namespace Breakfast.Migrations
                     ClientName = table.Column<string>(maxLength: 50, nullable: true),
                     Sum = table.Column<double>(nullable: false),
                     Status = table.Column<int>(nullable: false),
-                    CreatedDate = table.Column<DateTime>(nullable: false)
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    DeliveryDateTime = table.Column<DateTime>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -291,23 +292,104 @@ namespace Breakfast.Migrations
             migrationBuilder.InsertData(
                 table: "AspNetUsers",
                 columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { "2aa5d1b7-23ed-4f46-9bcf-bfbcc6037d40", 0, "3238298a-8824-4261-83d2-b05d3b1338f4", "admin@admin.com", false, false, null, "admin@admin.com", null, "AQAAAAEAACcQAAAAECh9hs6a97IDP2+QzQKnGUSWLaP5lHGcP6fohafedIW0d1lbq2B5WPcg9AVLUJqPnw==", null, false, "", false, "admin" });
+                values: new object[] { "5d9cd6d4-e917-4826-a284-de69a9b45674", 0, "7ad9a4b6-b6d2-4f05-b444-7e5aab25f6e8", "admin@admin.com", false, false, null, "admin@admin.com", null, "AQAAAAEAACcQAAAAEObGWqDM0Kjna1Igiq2rLrpjwwRTf5iHpYGBY/1xVvzGKCrMKjJRAZyk3BTgLwMIMA==", null, false, "", false, "admin" });
 
             migrationBuilder.InsertData(
                 table: "Categories",
                 columns: new[] { "Id", "Name" },
-                values: new object[] { 1, "Завтраки" });
+                values: new object[,]
+                {
+                    { 1, "#Завтраки" },
+                    { 2, "#Десерты" },
+                    { 3, "#Соки" },
+                    { 4, "#Хлеб" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Clients",
+                columns: new[] { "Id", "ClientToken" },
+                values: new object[,]
+                {
+                    { 1, "6be1f4fa-4c32-44ad-85e2-8c5387e0c0aa" },
+                    { 2, "7961ff2b-16ee-4ff2-9395-65cb0c078985" },
+                    { 3, "1856b198-d205-4b9d-84e6-7c3413c7bf7c" },
+                    { 4, "82003d01-9924-43d7-b32b-afeb16bb8302" },
+                    { 5, "8bba2fa4-073b-456a-90b9-be5876c72301" },
+                    { 6, "4c8ada0c-23db-4342-9689-e8728ec37f00" },
+                    { 7, "308a1201-c902-408a-9a51-42c9ed55a2b6" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "OrderHdrs",
+                columns: new[] { "Id", "Address", "ClientId", "ClientName", "CreatedDate", "DeliveryDateTime", "Latitude", "Longtitude", "Phone", "Status", "Sum" },
+                values: new object[,]
+                {
+                    { 1, "Школа Чародейства и Волшебства Хогвартс 1", 1, "Невилл Долгопупс", new DateTime(2020, 4, 10, 23, 57, 15, 820, DateTimeKind.Local).AddTicks(8026), new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 15, "Школа Чародейства и Волшебства Хогвартс 1", 1, "Невилл Долгопупс", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7666), new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 1, 120.0 },
+                    { 16, "Школа Чародейства и Волшебства Хогвартс 1", 1, "Невилл Долгопупс", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7666), new DateTime(2020, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 2, "Школа Чародейства и Волшебства Хогвартс 2", 2, "Сириус Блек", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7213), new DateTime(2020, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 9, "Школа Чародейства и Волшебства Хогвартс 2", 2, "Сириус Блек", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7645), new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 0, 120.0 },
+                    { 17, "Школа Чародейства и Волшебства Хогвартс 2", 2, "Сириус Блек", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7670), new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 27, "Школа Чародейства и Волшебства Хогвартс 2", 2, "Сириус Блек", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7700), new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 3, "Школа Чародейства и Волшебства Хогвартс 3", 3, "Гермиона Грейнджер", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7491), new DateTime(2020, 3, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 3, 120.0 },
+                    { 10, "Школа Чародейства и Волшебства Хогвартс 3", 3, "Гермиона Грейнджер", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7649), new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 0, 120.0 },
+                    { 18, "Школа Чародейства и Волшебства Хогвартс 3", 3, "Гермиона Грейнджер", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7675), new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 3, 120.0 },
+                    { 19, "Школа Чародейства и Волшебства Хогвартс 3", 3, "Гермиона Грейнджер", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7675), new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 4, 120.0 },
+                    { 4, "Школа Чародейства и Волшебства Хогвартс 4", 4, "Гарри Поттер", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7495), new DateTime(2020, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 1, 120.0 },
+                    { 11, "Школа Чародейства и Волшебства Хогвартс 4", 4, "Гарри Поттер", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7649), new DateTime(2020, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 8, "Школа Чародейства и Волшебства Хогвартс 1", 1, "Невилл Долгопупс", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7641), new DateTime(2020, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 0, 120.0 },
+                    { 20, "Школа Чародейства и Волшебства Хогвартс 4", 4, "Гарри Поттер", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7679), new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 0, 120.0 },
+                    { 5, "Школа Чародейства и Волшебства Хогвартс 5", 5, "Рональд Уизли", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7500), new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 4, 120.0 },
+                    { 12, "Школа Чародейства и Волшебства Хогвартс 5", 5, "Рональд Уизли", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7653), new DateTime(2020, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 4, 120.0 },
+                    { 21, "Школа Чародейства и Волшебства Хогвартс 5", 5, "Рональд Уизли", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7683), new DateTime(2020, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 22, "Школа Чародейства и Волшебства Хогвартс 5", 5, "Рональд Уизли", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7688), new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 28, "Школа Чародейства и Волшебства Хогвартс 5", 5, "Рональд Уизли", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7705), new DateTime(2020, 9, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 29, "Школа Чародейства и Волшебства Хогвартс 5", 5, "Рональд Уизли", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7705), new DateTime(2020, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 6, "Школа Чародейства и Волшебства Хогвартс 6", 6, "Игорь Николев", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7504), new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 4, 120.0 },
+                    { 13, "Школа Чародейства и Волшебства Хогвартс 6", 6, "Игорь Николев", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7658), new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 4, 120.0 },
+                    { 7, "Школа Чародейства и Волшебства Хогвартс 7", 7, "Альбус Дамблдор", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7636), new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 0, 120.0 },
+                    { 14, "Школа Чародейства и Волшебства Хогвартс 7", 7, "Альбус Дамблдор", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7662), new DateTime(2020, 1, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 1, 120.0 },
+                    { 23, "Школа Чародейства и Волшебства Хогвартс 7", 7, "Альбус Дамблдор", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7688), new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 24, "Школа Чародейства и Волшебства Хогвартс 7", 7, "Альбус Дамблдор", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7692), new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 30, "Школа Чародейства и Волшебства Хогвартс 4", 4, "Игорь Николев", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7709), new DateTime(2020, 12, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 25, "Школа Чародейства и Волшебства Хогвартс 7", 7, "Альбус Дамблдор", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7696), new DateTime(2020, 7, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 },
+                    { 26, "Школа Чародейства и Волшебства Хогвартс 7", 7, "Альбус Дамблдор", new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7696), new DateTime(2020, 8, 10, 0, 0, 0, 0, DateTimeKind.Unspecified), 15.0, 16.0, "1234567890", 2, 120.0 }
+                });
 
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "Id", "CategoryId", "Description", "Image", "IsHit", "Name", "Price", "Stars", "Status" },
                 values: new object[,]
                 {
-                    { 1, 1, "Приготовить яичницу может любой человек, даже совершенно далекий от кулинарии. Сытно, просто, быстро и очень вкусно — именно так, коротко и ясно, можно охарактеризовать это блюдо. Чтобы сохранить желтки яиц целыми, достаточно просто аккуратно вылить яйцо на сковороду с маслом и поджарить их с одной или двух сторон. В зависимости от способа приготовления различают следующие виды яичницы-глазуньи: яичница-глазунья классическая; с беконом; яичница в форме сердца, цветка, солнца и т. д.; яйцо, поджаренное в хлебе; яичница, запеченная в помидорах, булочке или картофеле; яйцо в перце. И это не считая национальных блюд, которые готовят на разных кухнях мира. Способов приготовления яичницы, на самом деле, очень много. Все зависит от фантазии и финансовых возможностей самого человека.", "https://omj.ru/wp-content/uploads/2017/04/8ffa491e973b0c0fafc37397c73e633c.jpg", true, "Классическая глазунья", 300.0, 4.9000000000000004, 1 },
-                    { 2, 1, "Полная противоположность глазунье — яичница-болтунья, при приготовлении которой яйца сначала взбивают с помощью вилки с солью, а затем уже обжаривают на сковороде со сливочным маслом. В зависимости от особенностей процесса приготовления бывают разные виды яичницы. Рецепты из приготовления заключаются в следующем: Яичница-болтунья по-английски. Для приготовления блюда 2 яйца взбивают вилкой со щепоткой соли и выливают на сковороду с разогретым сливочным маслом (20 г). В процессе жарки их постоянно перемешивают лопаткой, чтобы формировались слегка обжаренные комочки. Готовую яичницу рекомендуется подавать, выложив прямо на обжаренный тост. Яичница-болтунья по-французски. Для приготовления такого блюда 4 яйца взбивают венчиком с солью, а затем прямо в миске нагревают на водяной бане до готовности. Время приготовления такой яичницы составляет не менее 10 минут, при этом ее также необходимо перемешивать лопаткой для образования комочков. Общий принцип приготовления болтуньи — ни желтки, ни белки не должны оставаться целыми.", "https://omj.ru/wp-content/uploads/2017/04/0d04a1f18f9903f1da702c163e7553f5.jpg", false, "Яичница-болтунья", 850.0, 4.5999999999999996, 1 },
-                    { 3, 1, "Одним из самых оригинальных и одновременно простых вариантов приготовления глазуньи является яичница с сосиской в форме сердца. И совсем необязательно ждать подходящего праздника, чтобы порадовать таким завтраком свою вторую половинку. Яичница с сосиской в виде сердца по времени готовится ничуть не дольше традиционной глазуньи с сосиской. При этом выглядит блюдо намного аппетитнее и интереснее. Сосиска разрезается вдоль таким способом, чтобы один край ее оставался непрорезанным. Разрезанная сосиска разделяется на две половинки, выворачивается в обратную сторону и выкладывается в форме сердца. Свободные края сосиски скрепляются зубочисткой. Налить на сковороду немного растительного масла, разогреть его и выложить сердечко из сосиски на сковороду. Немного обжарить сердечко с одной стороны, перевернуть на другую и разбить в центр яйцо. Добавить немного соли и перца по вкусу. Жарить яичницу до готовности, затем переложить на тарелку, украсить зеленью и тостами. Существуют и другие виды яичниц с сосиской, которые при подаче на стол выглядят также оригинально. Ниже рассмотрим пошаговое приготовление некоторых из них.", "https://omj.ru/wp-content/uploads/2017/04/d7d4038d7da2cfbf2589a034b4004501.jpg", false, "Яичница с сосиской в виде сердца", 1250.0, 4.4000000000000004, 1 },
-                    { 4, 1, "Яйцо и сосиска — традиционное сочетание продуктов для приготовления яичницы. Но из этих двух ингредиентов можно легко сделать оригинальное блюдо. Яичница с сосиской в виде ромашки готовится в такой последовательности: Сосиска разрезается вдоль на 2 половинки. Затем на каждой части делаются надрезы, напоминающие бахрому. После этого обе половинки складываются в круг и скрепляются зубочистками. Из второй сосиски можно сделать еще пару цветов. Подготовленные сосиски выкладываются на сковороду с растительным маслом. В центр цветочка разбивается 1 яйцо. Желток яйца должен занять место серединки цветка. Как только яйца поджарятся их можно переложить на тарелку и украсить веточкой петрушки. Такая яичница с сосисками в виде цветочка станет отличным вариантом праздничного завтрака для женщины или ребенка. Приготовить ее совсем несложно и под силу каждому мужчине.", "https://omj.ru/wp-content/uploads/2017/04/785427770d9e097453e2db40cee911e4.jpg", false, "Цветочная тема в яичнице", 1550.0, 4.2000000000000002, 1 },
-                    { 5, 1, "Очень аккуратно и аппетитно смотрится яичница, имеющая четко обозначенные края. Чтобы белок не растекался безобразно по сковороде, а принял определенную форму, используют специальные ограничители. Эту функцию могут выполнять специальные силиконовые формы, сосиски, скрепленные зубочисткой определенным способом, овощи (перец, лук) и хлеб. Таким образом, получаются новые и оригинальные виды яичниц. Аппетитную и вкусную яичницу на сковороде можно поджарить одновременно с хлебом, получив таким способом интересную закуску, завтрак или перекус. Яичница в виде сердца в хлебе готовится в такой последовательности: Белый или ржаной хлеб нарезается кусочками толщиной 1−1,5 см. Также можно использовать уже нарезанный хлеб для тостов. При помощи вырубки для печенья в мякише вырезается отверстие. Также можно воспользоваться обычным ножом, но края формы могут получиться не такими аккуратными. В сковороде разогревается немного сливочного и растительного масла. В центр сковороды выкладывается кусочек хлеба и обжаривается с одной стороны до румяной корочки. Затем хлеб переворачивается на другую сторону и в сделанное вырубкой отверстие разбивается яйцо. Добавляется соль и перец. Яйцо жарится на сковороде около 5 минут. После этого яичницу рекомендуется поместить в разогретую до 180° духовку на 5 минут, чтобы белок хорошо загустел. Вместо вырубки для печенья в виде сердца можно использовать и другую форму, например, круг, звездочку, цветок.", "https://omj.ru/wp-content/uploads/2017/04/4a1fa458fea1c74302fb2bf21b661a81.jpg", false, "Яичница в хлебе", 1850.0, 4.0999999999999996, 1 }
+                    { 28, 4, null, "http://russian7.ru/wp-content/uploads/2013/03/63.jpg", false, "Московский боярский хлеб", 70.0, 4.5, 1 },
+                    { 2, 1, null, "https://foodandmood.com.ua/i/70/97/05/709705/gallery/e6a40ddde8c4b09d1c72dcdaae662a96-quality_75Xresize_1Xallow_enlarge_0Xw_700Xh_700.jpg", false, "Яичница по‑французски", 100.0, 4.5999999999999996, 1 },
+                    { 3, 1, null, "https://img1.liveinternet.ru/images/attach/d/0/143/161/143161575_6425626_zavtrak_za_20_min_1.jpg", false, "Яичница в помидоре", 110.0, 4.4000000000000004, 1 },
+                    { 4, 1, null, "https://elisheva.ru/uploads/posts/2016-11/1478615735_nezhnyi-omlet-s-gribami-i-syrom.jpg", false, "Бульбяная яичница", 135.0, 4.2000000000000002, 1 },
+                    { 5, 1, null, "https://moi-kulinar.ru/uploads/posts/2018-07/1530946713_yaichnitsa-v-pertse.jpg", false, "Яичница в перце", 125.0, 4.0999999999999996, 1 },
+                    { 6, 1, null, "https://omj.ru/wp-content/uploads/2017/04/4a1fa458fea1c74302fb2bf21b661a81.jpg", false, "Яичница в помидорах", 220.0, 4.2000000000000002, 1 },
+                    { 7, 1, null, "https://foodman.club/wp-content/uploads/2017/10/21-5.jpg", false, "Яичница по‑французски в хлебе", 185.0, 4.2999999999999998, 1 },
+                    { 8, 1, null, "https://cs8.pikabu.ru/post_img/2017/04/05/4/1491367487164439680.png", false, "Яичница со сметаной", 200.0, 4.0999999999999996, 1 },
+                    { 9, 1, null, "https://fannykitchen.com/image/ing/2299.jpg", false, "Яичница-глазунья", 185.0, 4.4000000000000004, 1 },
+                    { 10, 1, null, "https://cdn.segodnya.ua/img/article/11299/45_main_new.1523463015.jpg", false, "Яичница-болтунья со шпинатом", 140.0, 4.5, 1 },
+                    { 11, 1, null, "https://www.owoman.ru/assets/images/cook/boltunya_iz_yaic2.jpg", false, "Яичница-болтунья", 150.0, 4.7000000000000002, 1 },
+                    { 12, 1, null, "https://imgtest.mir24.tv/uploaded/images/crops/2018/October/870x489_1x1_detail_crop_c2325328884af7e2fee9343cbbe83a13f13d6a347fd4b10a5b98255587d6845f.jpg", false, "Яичница с брынзой", 145.0, 4.7999999999999998, 1 },
+                    { 13, 1, null, "https://foodmag.me/wp-content/uploads/2017/05/yaichnitsa-v-pertsah-1.jpg", false, "Взбитая яичница", 135.0, 4.9000000000000004, 1 },
+                    { 29, 4, null, "http://russian7.ru/wp-content/uploads/2013/03/81.jpg", false, "Стародубский хлеб", 45.0, 4.5999999999999996, 1 },
+                    { 14, 1, null, "https://foodmag.me/wp-content/uploads/2017/05/yaichnitsa-v-pertsah-1-650x450.jpg", false, "Яичница по‑баскски", 210.0, 4.2000000000000002, 1 },
+                    { 16, 2, null, "https://www.koolinar.ru/all_image/recipes/144/144777/recipe_1b7d00e6-ae0c-4d14-b3ee-fa3af188873c_large.jpg", false, "Классический чизкейк", 250.0, 4.0999999999999996, 1 },
+                    { 17, 2, null, "https://sovkusom.ru/wp-content/uploads/recepty/k/kak-prigotovit-smetannyi-tort-na-skovorode/thumb-840x440.jpg", false, "Сметанный торт", 250.0, 4.2000000000000002, 1 },
+                    { 18, 2, null, "https://www.koolinar.ru/all_image/recipes/144/144903/recipe_3865e7be-2722-40a3-87a7-4634c5dfced4_large.jpg", false, "Шоколадные маффины", 250.0, 4.2999999999999998, 1 },
+                    { 19, 3, null, "https://img03.rl0.ru/7ecccd2ce12010f05a4e3f36a6fbb120/c615x400i/news.rambler.ru/img/2019/01/12025238.761283.5915.jpeg", false, "Свежевыжатый гранатовый сок", 100.0, 4.7999999999999998, 1 },
+                    { 20, 3, null, "https://polzavred-edi.ru/wp-content/uploads/2019/06/polza-i-vred-apelsinovogo-soka.jpg", false, "Свежевыжатый апельсиновый сок", 80.0, 4.7000000000000002, 1 },
+                    { 21, 3, null, "https://www.inmoment.ru/img/health-body/grapes-juice1.jpg", false, "Свежевыжатый виноградный сок", 80.0, 4.7000000000000002, 1 },
+                    { 22, 3, null, "https://cafesahara.ru/upload/iblock/7ed/7eddcb30773af9e076d4d6ae8bc6a96a.jpg", false, "Свежевыжатый ананасовый сок", 80.0, 4.7000000000000002, 1 },
+                    { 23, 4, null, "http://russian7.ru/wp-content/uploads/2013/03/13.jpg", false, "Белый хлеб", 55.0, 4.0999999999999996, 1 },
+                    { 24, 4, null, "http://russian7.ru/wp-content/uploads/2013/03/22.jpg", false, "Черный хлеб", 45.0, 4.2999999999999998, 1 },
+                    { 25, 4, null, "http://russian7.ru/wp-content/uploads/2013/03/22.jpg", false, "Красносельский хлеб", 65.0, 4.2000000000000002, 1 },
+                    { 26, 4, null, "http://russian7.ru/wp-content/uploads/2013/03/7_russkix_xlebov.jpg", false, "Заварной хлеб", 75.0, 4.2999999999999998, 1 },
+                    { 27, 4, null, "http://russian7.ru/wp-content/uploads/2013/03/53.jpg", false, "Бородинский хлеб", 80.0, 4.4000000000000004, 1 },
+                    { 15, 1, null, "https://media-cdn.tripadvisor.com/media/photo-s/08/9b/f2/3e/caption.jpg", false, "Яичница по‑кончаловски", 150.0, 4.2999999999999998, 1 },
+                    { 1, 1, null, "https://i.ytimg.com/vi/s0L8hrM6dXw/maxresdefault.jpg", true, "Яичница в хлебе", 90.0, 4.9000000000000004, 1 }
                 });
 
             migrationBuilder.CreateIndex(

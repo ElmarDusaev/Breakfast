@@ -4,14 +4,16 @@ using Breakfast.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Breakfast.Migrations
 {
     [DbContext(typeof(BreakfastDbContext))]
-    partial class BreakfastDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200410205716_Init")]
+    partial class Init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -233,7 +235,7 @@ namespace Breakfast.Migrations
                             Id = 2,
                             Address = "Школа Чародейства и Волшебства Хогвартс 2",
                             ClientId = 2,
-                            ClientName = "Игорь Николев",
+                            ClientName = "Сириус Блек",
                             CreatedDate = new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7213),
                             DeliveryDateTime = new DateTime(2020, 2, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 15.0,
@@ -289,7 +291,7 @@ namespace Breakfast.Migrations
                             Id = 6,
                             Address = "Школа Чародейства и Волшебства Хогвартс 6",
                             ClientId = 6,
-                            ClientName = "Сириус Блек",
+                            ClientName = "Игорь Николев",
                             CreatedDate = new DateTime(2020, 4, 10, 23, 57, 15, 823, DateTimeKind.Local).AddTicks(7504),
                             DeliveryDateTime = new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Latitude = 15.0,
@@ -651,7 +653,7 @@ namespace Breakfast.Migrations
 
                     b.Property<string>("Image")
                         .HasColumnType("nvarchar(150)")
-                        .HasMaxLength(150);
+                        .HasMaxLength(550);
 
                     b.Property<bool>("IsHit")
                         .HasColumnType("bit");

@@ -26,8 +26,8 @@ namespace Breakfast.controllers
         [Authorize]
         public IActionResult Index()
         {
-            //var graphReport = from i in context.OrderHdrs where 
-            var orders = context.OrderHdrs.ToList();
+
+            var orders = context.OrderHdrs.Where(a=>a.DeliveryDateTime.Year == DateTime.Now.Year).ToList();
             var dashboard = new DashboardViewModel()
             {
                 OrdersTotal = orders.Count(),
@@ -40,27 +40,36 @@ namespace Breakfast.controllers
                 RejectedToday = orders.Where(a => a.Status == OrderHdrStatus.Rejected && a.DeliveryDateTime.ToShortDateString() == DateTime.Now.ToShortDateString()).Count()
             };
 
+
+            var graphReport = from i in context.OrderHdrs.ToList()
+                              where i.DeliveryDateTime.Year == DateTime.Now.Year
+                              orderby i.DeliveryDateTime
+                              group i by i.DeliveryDateTime.Month into g
+                              select new { labels = g.Key, data = g.Distinct().Count(), Month = (Months)g.Key};
+
+            dashboard.MonthName = graphReport.Select(a => a.Month.ToString()).ToArray();
+            dashboard.MonthValue = graphReport.Select(a => a.data).ToArray();
+
             return View(dashboard);
         }
 
-        /// <summary>
-        /// Главная страница
-        /// </summary>
-        /// <returns></returns>
-        public IActionResult Get()
-        {
-            var client = Request.GetClient(context);
-            var products = from p in context.Products where p.Status == ProductStatus.Active
-                           select new MainViewVodel {
-                               Id = p.Id,
-                               Name = p.Name,
-                               Image = p.Image,
-                               Price = p.Price,
-                               CategoryId = p.CategoryId,
-                               Stars = p.Stars,
-                               InBasket = (from b in context.Basket where b.ProductId == p.Id && b.ClientId == client.Id select b.Qty).FirstOrDefault()
-                           };
-            return Json(products.ToList());
-        }
+
     }
+
+    enum Months
+    {
+        Январь = 1,
+        Февраль,
+        Март,
+        Апрель,
+        Май,
+        Июнь,
+        Июль,
+        Август,
+        Сентябрь,
+        Октябрь,
+        Ноябрь,
+        Декабрь
+    }
+
 }

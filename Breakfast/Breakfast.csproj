@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="SqlQueries\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\img\" />
   </ItemGroup>

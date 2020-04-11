@@ -7,6 +7,11 @@ namespace Breakfast.ViewModels
 {
     public class DashboardViewModel
     {
+
+        public string[] MonthName { get; set; }
+        public int[] MonthValue { get; set; }
+
+
         public int OrdersTotal { get; set; }
         public int OrdersToday { get; set; }
         public int RejectedTotal { get; set; }
