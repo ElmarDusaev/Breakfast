@@ -36,6 +36,7 @@ namespace Breakfast.Controllers
         {
             var client = Request.GetClient(context);
             var categories = context.Categories.ToList();
+            categories.Insert(0, new Category { Id = 0, Name = "Все" });
             var products = (from p in context.Products
                            where p.Status == ProductStatus.Active
                            select new ProductListViewModel
