@@ -32,6 +32,7 @@ namespace Breakfast.Models
         [Required(ErrorMessage = "Укажите категорию")]
         public int CategoryId { get; set; }
         public Category Category { get; set; }
+        [Display(Name = "Статус")]
         [Required(ErrorMessage = "Укажите статус")]
         public ProductStatus Status { get; set; }
     }
