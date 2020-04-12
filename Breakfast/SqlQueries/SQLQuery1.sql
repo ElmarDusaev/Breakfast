@@ -11,5 +11,8 @@ delete from OrderHdrs
 
 select * from products
 update products set name = 'Торт Наполеон' where id = 43
-delete from products where id between 30 and 41
+delete from products where id between 47 and 51
+
+
+
 

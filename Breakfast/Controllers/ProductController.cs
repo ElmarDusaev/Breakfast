@@ -62,7 +62,7 @@ namespace Breakfast.Controllers
         {
             if (id == null) return BadRequest();
             var product = context.Products.Where(a => a.Id == id).Select(a => a).FirstOrDefault();
-            if (product == null) NotFound();
+            if (product == null) return NotFound();
 
             ViewBag.Categories = from i in context.Categories
                                  select new SelectListItem
@@ -80,6 +80,19 @@ namespace Breakfast.Controllers
 
             return View(product);
         }
+
+        [HttpPost]
+        public IActionResult Edit(Product product)
+        {
+            //if (id != product.Id) return BadRequest();
+
+            context.Entry(product).State = EntityState.Modified;
+            context.SaveChanges();
+
+            return Ok();
+        }
+
+
 
 
         [AllowAnonymous]

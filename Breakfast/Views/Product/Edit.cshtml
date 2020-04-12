@@ -3,11 +3,11 @@
     ViewData["Title"] = "Добавить продукцию";
 }
 
-<h1>Добавить продукт</h1>
+    <h1>Обновить продукт</h1>
 <hr />
 
 
-<form asp-action="Add" class="form-row" method="post" data-ajax="true" data-ajax-method="post" data-ajax-failure="onFailed" data-ajax-success="Success">
+<form asp-action="Edit" class="form-row" method="post" data-ajax="true" data-ajax-method="post" data-ajax-failure="Failed" data-ajax-success="Success">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group col-md-12">
         <label asp-for="Name" class="control-label"></label>
@@ -55,7 +55,7 @@
     </div>
 
     <div class="form-group col-md-4">
-        <input type="submit" class="btn btn-primary" value="Добавить">
+        <input type="submit" class="btn btn-primary" value="Обновить">
     </div>
 </form>
 
@@ -71,19 +71,21 @@
         
         Swal.fire(
             'Успешно!!!',
-            'Продукт ' + $("#Name").val() + ' добавлен.',
+            'Продукт ' + $("#Name").val() + ' обновлен.',
             'success'
         );
-
-        $("#Name").val("");
-        $("#Description").val("");
-        $("#Image").val("");
-        $("#Stars").val("");
-        $("#Price").val("");
-        $("#CategoryId").val("0");
-        $("#Status").val("0");
-
     };
+
+    function Failed() {
+
+        Swal.fire(
+            'Ошибка!!!',
+            'Продукт не обновлен.',
+            'error'
+        );
+    };
+
+
 
 
 </script>

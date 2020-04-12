@@ -16,9 +16,18 @@
     </thead>
     @foreach (var date in Model)
     {
-        <tr class="bg-light">
-            <td colspan="4"><h5>@date.Date</h5></td>
-        </tr>
+        @if (date.Date == DateTime.Now.ToString("dd-MM-yyyy"))
+        {
+            <tr style="background-color: rgb(197, 232, 207)">
+                <td colspan="4"><h5>@date.Date</h5></td>
+            </tr>
+        }
+        else
+        {
+            <tr class="bg-light">
+                <td colspan="4"><h5>@date.Date</h5></td>
+            </tr>
+        }
 
         foreach (var order in date.OrderHdrs)
         {
