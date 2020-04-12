@@ -7,3 +7,9 @@ select * from OrderDtls
 
 delete from OrderDtls
 delete from OrderHdrs
+
+
+select * from products
+update products set name = 'Торт Наполеон' where id = 43
+delete from products where id between 30 and 41
+
