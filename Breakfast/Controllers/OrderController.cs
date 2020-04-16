@@ -59,16 +59,27 @@ namespace Breakfast.Controllers
 
             context.SaveChanges();
 
-            return Json(new { OrderID = orderHdr.Id, ClientName = orderHdr.ClientName, Sum = orderHdr.Sum, Address = orderHdr.Address, Vishes = "Приятного аппетита!!!"});
+            return Json(new { orderID = orderHdr.Id, clientName = orderHdr.ClientName, sum = orderHdr.Sum, address = orderHdr.Address, orderDate = orderHdr.DeliveryDateTime.ToString("dd-MM-yyyy"), orderTime = orderHdr.DeliveryDateTime.ToString("hh:mm") });
         }
 
+        [HttpGet]
+        [AllowAnonymous]
+        //[ValidateAntiForgeryToken]
+        public IActionResult Info(int? id)
+        {
+            var products = from i in context.OrderDtls 
+                           where i.OrderHdrId == id 
+                           join p in context.Products on i.ProductId equals p.Id
+                           select new { i.Id, p.Name, i.Qty, i.Status };
+            return Json(products);
+        }
 
         public IActionResult Index()
         {
             var orders = from i in context.OrderHdrs.ToList()
                          orderby i.DeliveryDateTime descending
                          group i by i.DeliveryDateTime.ToString("dd-MM-yyyy") into g
-                         select new OrderViewModel { Date = g.Key, OrderHdrs = g.Select(a => a).ToList() };
+                         select new OrderViewModel { Date = g.Key, OrderHdrs = g.OrderBy(a=>a.DeliveryDateTime).Select(a => a).ToList() };
             return View(orders);
         }
 

@@ -5,40 +5,128 @@
 
 <h1>Заказы</h1>
 
-<table class="table">
+<table class="table table-hover">
     <thead>
         <tr>
             <th>Время доставки</th>
+            <th>Имя клиента</th>
             <th>Адрес доставки</th>
             <th>Сумма</th>
-            <th>Статус</th>
+            <th></th>
+            <th></th>
         </tr>
     </thead>
-    @foreach (var date in Model)
-    {
-        @if (date.Date == DateTime.Now.ToString("dd-MM-yyyy"))
-        {
-            <tr style="background-color: rgb(255, 237, 173)">
-                <td colspan="4"><h5>@date.Date (Сегодня)</h5></td>
-            </tr>
-        }
-        else
-        {
-            <tr class="bg-light">
-                <td colspan="4"><h5>@date.Date</h5></td>
-            </tr>
-        }
+    <tbody>
 
-        foreach (var order in date.OrderHdrs)
+        @foreach (var date in Model)
         {
-            <tr>
-                <td class="text-center">@order.DeliveryDateTime.ToString("HH:mm")</td>
-                <td>@order.Address</td>
-                <td>@string.Format("{0:0.00}", order.Sum)</td>
-                <td>@order.Status.GetDescription()</td>
-            </tr>
+            @if (date.Date == DateTime.Now.ToString("dd-MM-yyyy"))
+            {
+                <tr style="background-color: rgb(255, 237, 173)">
+                    <td colspan="6"><h5>@date.Date (Сегодня)</h5></td>
+                </tr>
+            }
+            else
+            {
+                <tr class="bg-light">
+                    <td colspan="6"><h5>@date.Date</h5></td>
+                </tr>
+            }
+
+            foreach (var order in date.OrderHdrs)
+            {
+                <tr data-href="@order.Id">
+                    <td class="text-center">@order.DeliveryDateTime.ToString("HH:mm")</td>
+                    <td>@order.ClientName</td>
+                    <td>@order.Address</td>
+                    <td>@string.Format("{0:0.00}", order.Sum)</td>
+
+                    @if (order.Status == OrderHdrStatus.Done)
+                    {
+                        <td><button class="btn btn-success"><span class="icon-checkmark"></span></button></td>
+                    }
+                    else if (order.Status == OrderHdrStatus.Requested)
+                    {
+                        <td><button class="btn btn-info"><span class="icon-cart"></span></button></td>
+                    }
+                    else if (order.Status == OrderHdrStatus.Delivery)
+                    {
+                        <td><button class="btn btn-warning"><span class="icon-truck"></span></button></td>
+                    }
+                    else if (order.Status == OrderHdrStatus.Rejected)
+                    {
+                        <td><button class="btn btn-danger"><span class="icon-bin"></span></button></td>
+                    }
+                    else if (order.Status == OrderHdrStatus.InProgress)
+                    {
+                        <td><button class="btn btn-dark"><span class="icon-hour-glass"></span></button></td>
+                    }
+                </tr>
+            }
         }
-    }
+    </tbody>
 
 </table>
 
+
+<div class="modal fade" id="OrderInfo">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header"><h1>Список продуктов</h1></div>
+            <div class="modal-body" id="OrderInfoBody"></div>
+            <div class="modal-footer">
+                <input class="btn btn-light" data-dismiss="modal" value="Закрыть" />
+                <input class="btn btn-success" data-dismiss="modal" value="Заказ Набран" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+
+    <script>
+    $(document).ready(function () {
+        $('*[data-href]').on('click', function (event) {
+            event.preventDefault();
+
+            const Id = this.getAttribute("data-href");
+             $.ajax({
+                type: "GET",
+                url: '@Url.Action("Info")/'+Id,
+                dataType: "json",
+                success: function (data) {
+                    let tbl = "";
+                    $.each(data, function (key, value) {
+                        tbl += '<tr>';
+                        tbl += '<td>' + value.name + '</td>';
+                        tbl += '<td>' + value.qty + '</td>';
+                        tbl += "<td><span class='text-info icon-minus' id='product" +value.id+"' onClick='Take("+value.id+")'></td>";
+                        tbl += '</tr>';
+                    })
+
+                    let table = "<table class='table'><thead><tr><th>Наименование</th><th>Количество</th><th>Статус</th></tr></thead><tbody>"+tbl+"</tbody></table> ";
+
+                    $("#OrderInfoBody").html(table);
+                    $('#OrderInfo').modal('show');
+                }
+             });
+
+
+
+        });
+    });
+
+
+        function Take(id) {
+            $("#product" + id).removeClass("icon-minus");
+            $("#product" + id).addClass("icon-plus");
+        }
+
+
+
+    </script>
+
+}
