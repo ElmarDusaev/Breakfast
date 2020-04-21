@@ -24,12 +24,15 @@
                 <li class="nav-item">
                     <a asp-action="Index" asp-controller="Order" class="nav-link">Заказы</a>
                 </li>
+                <li class="nav-item">
+                    <a asp-action="Index" asp-controller="Delivery" class="nav-link">Доставка</a>
+                </li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Справочники</a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         @*<a class="dropdown-item" asp-action="Index" asp-controller="Users">Пользователи</a>*@
                         <a class="dropdown-item" asp-action="Index" asp-controller="Product">Продукция</a>
-                        <a class="dropdown-item" asp-action="Index" asp-controller="Categories">Категории</a>
+                        <a class="dropdown-item" asp-action="Index" asp-controller="Category">Категории</a>
                     </div>
                 </li>
 

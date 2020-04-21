@@ -61,10 +61,12 @@
 
 
 @section Scripts {
-    <script src="~/jquery/jquery.min.js"></script>
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script src="~/jquery/jquery.min.js"></script>
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/lib/limonte-sweetalert2/sweetalert2.all.min.js"></script>
+
 <script>
 
     function Success() {

@@ -11,6 +11,8 @@ namespace Breakfast.ViewModels
         public string[] MonthName { get; set; }
         public int[] MonthValue { get; set; }
 
+        public string[] PipeStatus { get; set; }
+        public double[] PipeSum { get; set; }
 
         public int OrdersTotal { get; set; }
         public int OrdersToday { get; set; }

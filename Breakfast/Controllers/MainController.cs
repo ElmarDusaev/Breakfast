@@ -41,8 +41,7 @@ namespace Breakfast.controllers
             };
 
 
-            var graphReport = from i in context.OrderHdrs.ToList()
-                              where i.DeliveryDateTime.Year == DateTime.Now.Year
+            var graphReport = from i in orders
                               orderby i.DeliveryDateTime
                               group i by i.DeliveryDateTime.Month into g
                               select new { labels = g.Key, data = g.Distinct().Count(), Month = (Months)g.Key};
@@ -50,26 +49,21 @@ namespace Breakfast.controllers
             dashboard.MonthName = graphReport.Select(a => a.Month.ToString()).ToArray();
             dashboard.MonthValue = graphReport.Select(a => a.data).ToArray();
 
+
+            var profits = from i in orders
+                          group i by i.Status into g
+                          select new { Status = g.Key.GetDescription(), Sum = g.Sum(a=>a.Sum)};
+
+            dashboard.PipeStatus = profits.Select(a => a.Status).ToArray();
+            dashboard.PipeSum = profits.Select(a => a.Sum).ToArray();
+
+
             return View(dashboard);
         }
 
 
     }
 
-    enum Months
-    {
-        Январь = 1,
-        Февраль,
-        Март,
-        Апрель,
-        Май,
-        Июнь,
-        Июль,
-        Август,
-        Сентябрь,
-        Октябрь,
-        Ноябрь,
-        Декабрь
-    }
+
 
 }

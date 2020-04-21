@@ -39,7 +39,9 @@ namespace Breakfast.Models
         [Description("В пути")]
         Delivery, 
         [Description("Отказ")]
-        Rejected
+        Rejected,
+        [Description("Выполнен")]
+        Closed
     }
 
     /// <summary>
@@ -57,4 +59,22 @@ namespace Breakfast.Models
         [Description("Отменен опертором")]
         RejectedByOperator
     }
+
+
+    enum Months
+    {
+        Январь = 1,
+        Февраль,
+        Март,
+        Апрель,
+        Май,
+        Июнь,
+        Июль,
+        Август,
+        Сентябрь,
+        Октябрь,
+        Ноябрь,
+        Декабрь
+    }
+
 }

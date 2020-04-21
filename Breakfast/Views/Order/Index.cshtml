@@ -1,9 +1,21 @@
-﻿@model IEnumerable<OrderViewModel>
+﻿
+@model IEnumerable<OrderViewModel>
 @{
     ViewData["Title"] = "Заказы";
 }
 
+
+
+
 <h1>Заказы</h1>
+@if (ViewBag.AllOrders)
+{
+    <a asp-action="Index" asp-route-all="true">Показать все заказы</a>
+}
+else
+{
+    <a asp-action="Index" asp-route-all="false">Показать заказы за сегодня</a>
+}
 
 <table class="table table-hover">
     <thead>
@@ -35,33 +47,57 @@
 
             foreach (var order in date.OrderHdrs)
             {
-                <tr data-href="@order.Id">
-                    <td class="text-center">@order.DeliveryDateTime.ToString("HH:mm")</td>
-                    <td>@order.ClientName</td>
-                    <td>@order.Address</td>
-                    <td>@string.Format("{0:0.00}", order.Sum)</td>
+    <tr data-href="@order.Id" id="Order_@order.Id">
+        <td class="text-center">@order.DeliveryDateTime.ToString("HH:mm")</td>
+        <td>@order.ClientName</td>
+        <td>@order.Address</td>
+        <td>@string.Format("{0:0.00}", order.Sum)</td>
 
-                    @if (order.Status == OrderHdrStatus.Done)
-                    {
-                        <td><button class="btn btn-success"><span class="icon-checkmark"></span></button></td>
-                    }
-                    else if (order.Status == OrderHdrStatus.Requested)
-                    {
-                        <td><button class="btn btn-info"><span class="icon-cart"></span></button></td>
-                    }
-                    else if (order.Status == OrderHdrStatus.Delivery)
-                    {
-                        <td><button class="btn btn-warning"><span class="icon-truck"></span></button></td>
-                    }
-                    else if (order.Status == OrderHdrStatus.Rejected)
-                    {
-                        <td><button class="btn btn-danger"><span class="icon-bin"></span></button></td>
-                    }
-                    else if (order.Status == OrderHdrStatus.InProgress)
-                    {
-                        <td><button class="btn btn-dark"><span class="icon-hour-glass"></span></button></td>
-                    }
-                </tr>
+
+        @switch (order.Status)
+        {
+            case OrderHdrStatus.Requested:
+                <td><button class="btn btn-light"><span class="icon-cart"></span></button></td>
+                break;
+            case OrderHdrStatus.InProgress:
+                <td><button class="btn btn-dark"><span class="icon-hour-glass"></span></button></td>
+                break;
+            case OrderHdrStatus.Done:
+                <td><button class="btn btn-info"><span class="icon-gift"></span></button></td>
+                break;
+            case OrderHdrStatus.Delivery:
+                <td><button class="btn btn-warning"><span class="icon-truck"></span></button></td>
+                break;
+            case OrderHdrStatus.Rejected:
+                <td><button class="btn btn-danger"><span class="icon-bin"></span></button></td>
+                break;
+            case OrderHdrStatus.Closed:
+                <td><button class="btn btn-success"><span class="icon-checkmark"></span></button></td>
+                break;
+
+        }
+
+        @if (order.Status == OrderHdrStatus.Done)
+        {
+
+        }
+        else if (order.Status == OrderHdrStatus.Requested)
+        {
+
+        }
+        else if (order.Status == OrderHdrStatus.Delivery)
+        {
+
+        }
+        else if (order.Status == OrderHdrStatus.Rejected)
+        {
+
+        }
+        else if (order.Status == OrderHdrStatus.InProgress)
+        {
+
+        }
+    </tr>
             }
         }
     </tbody>
@@ -75,8 +111,9 @@
             <div class="modal-header"><h1>Список продуктов</h1></div>
             <div class="modal-body" id="OrderInfoBody"></div>
             <div class="modal-footer">
-                <input class="btn btn-light" data-dismiss="modal" value="Закрыть" />
-                <input class="btn btn-success" data-dismiss="modal" value="Заказ Набран" />
+                <button class="btn btn-danger mr-auto" id="CancelOrder" onclick="CancelOrder()">Отменить</button>
+                <button class="btn btn-light" data-dismiss="modal">Закрыть</button>
+                <button class="btn btn-info" data-orderhdr="" id="OrderHdrStatus" onclick="ChangeOrderHdrStatus(this)">Заказ Набран</button>
             </div>
         </div>
     </div>
@@ -97,19 +134,30 @@
                 type: "GET",
                 url: '@Url.Action("Info")/'+Id,
                 dataType: "json",
-                success: function (data) {
+                 success: function (data) {
                     let tbl = "";
                     $.each(data, function (key, value) {
                         tbl += '<tr>';
                         tbl += '<td>' + value.name + '</td>';
                         tbl += '<td>' + value.qty + '</td>';
-                        tbl += "<td><span class='text-info icon-minus' id='product" +value.id+"' onClick='Take("+value.id+")'></td>";
+                        let classStatus = 'text-danger icon-minus';
+                        if (value.status == 0) {
+                            classStatus = 'text-danger icon-minus';
+                        }
+                        else if (value.status == 1) {
+                            classStatus = 'text-success icon-plus';
+                        }
+
+                        tbl += "<td><span class='" + classStatus + "' id='product" + value.id + "' onClick='ChangeOrderDtlSatus(" + value.id + ", " + Id + ")'></td>";
+
                         tbl += '</tr>';
                     })
 
                     let table = "<table class='table'><thead><tr><th>Наименование</th><th>Количество</th><th>Статус</th></tr></thead><tbody>"+tbl+"</tbody></table> ";
 
                     $("#OrderInfoBody").html(table);
+                     $("#OrderHdrStatus").attr("data-orderhdr", Id);
+
                     $('#OrderInfo').modal('show');
                 }
              });
@@ -119,13 +167,81 @@
         });
     });
 
+        function ChangeOrderDtlSatus(id, hdrId) {
+            let obj = $("#product" + id);
 
-        function Take(id) {
-            $("#product" + id).removeClass("icon-minus");
-            $("#product" + id).addClass("icon-plus");
+            let element = $("#Order_" + hdrId).children("td").children("button");
+            console.log(element);
+            element.removeClass().addClass("btn btn-dark");
+            element.children("span").removeClass().addClass("icon-hour-glass");
+
+                $.ajax({
+                    method: "POST",
+                    url: "@Url.Action("ChangeOrderDtlSatus", "Order")",
+                    contentType: "application/json; charset=utf-8",
+                    data: JSON.stringify(id),
+                    dataType: "json",
+                    success: function (result) {
+
+
+
+                        if (result == 0) {
+                            obj.removeClass("icon-plus");
+                            obj.removeClass("text-success");
+                            obj.addClass("icon-minus");
+                            obj.addClass("text-danger");
+                        }
+                        else if (result == 1){
+                            obj.removeClass("icon-minus");
+                            obj.removeClass("text-danger");
+                            obj.addClass("icon-plus");
+                            obj.addClass("text-success");
+                        }
+                    }
+                });
         }
 
+        function ChangeOrderHdrStatus(val) {
+            const Id = val.getAttribute("data-orderhdr");
 
+            $.ajax({
+                method: "POST",
+                url: "@Url.Action("ChangeOrderHdrStatus", "Order")",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                data: Id,
+                success: function () {
+                    let element = $("#Order_" + Id).children("td").children("button");
+                    element.removeClass().addClass("btn btn-info");
+                    element.children("span").removeClass().addClass("icon-gift");
+                    $('#OrderInfo').modal('hide');
+
+                }
+
+            });
+
+        }
+
+        function CancelOrder() {
+            var Id = $("#OrderHdrStatus").attr('data-orderhdr');
+
+                $.ajax({
+                method: "POST",
+                url: "@Url.Action("CancelOrder", "Order")",
+                dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    data: Id,
+                success: function () {
+                    let element = $("#Order_" + Id).children("td").children("button");
+                    element.removeClass().addClass("btn btn-danger");
+                    element.children("span").removeClass().addClass("icon-bin");
+                    $('#OrderInfo').modal('hide');
+
+                }
+
+            });
+
+        }
 
     </script>
 
