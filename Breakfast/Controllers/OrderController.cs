@@ -87,6 +87,34 @@ namespace Breakfast.Controllers
             return View(orders);
         }
 
+        [HttpGet]
+        public IActionResult PrintInvoce(int? id)
+        {
+
+            var orderHdr = (from h in context.OrderHdrs
+                            where h.Id == id && h.Status == OrderHdrStatus.Done select h).FirstOrDefault();
+
+            if (orderHdr == null) return BadRequest();
+
+            var result = new PrintInvoceViewModel
+                         {
+                             Id = orderHdr.Id,
+                             Address = orderHdr.Address,
+                             ClientName = orderHdr.ClientName,
+                             DeliveryDateTime = orderHdr.DeliveryDateTime,
+                             Sum = (from i in context.OrderDtls 
+                                    where i.OrderHdrId == id && i.Status == OrderDtlStatus.Done
+                                    select i
+                                    ).Sum(a=>a.Qty*a.Price),
+
+                             Products = (from d in context.OrderDtls 
+                                         join p in context.Products on d.ProductId equals p.Id 
+                                         where d.OrderHdrId == id && d.Status == OrderDtlStatus.Done 
+                                         select new ProductInfoViewModel{ Name =  p.Name, Price = d.Price, Qty = d.Qty }).ToList()
+                         };
+
+            return PartialView("_PrintInvoce", result);
+        }
 
         [HttpGet]
         public IActionResult Info(int? id)
@@ -94,7 +122,7 @@ namespace Breakfast.Controllers
             var products = from i in context.OrderDtls
                            where i.OrderHdrId == id
                            join p in context.Products on i.ProductId equals p.Id
-                           select new { i.Id, p.Name, i.Qty, i.Status };
+                           select new { i.Id, p.Name, i.Qty, i.Status};
             return Json(products);
         }
 
