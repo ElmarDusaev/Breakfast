@@ -5,6 +5,7 @@ namespace Breakfast.ViewModels
 {
     class MainViewVodel
     {
+        public int TotalInBasket { get; set; }
         public List<Category> categories { get; set; }
         public List<ProductListViewModel> products { get; set; }
     }

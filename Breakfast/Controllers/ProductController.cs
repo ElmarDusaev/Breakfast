@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace Breakfast.Controllers
 {
     [Authorize]
-    public class ProductController:Controller
+    public class ProductController : Controller
     {
         BreakfastDbContext context;
 
@@ -23,7 +23,7 @@ namespace Breakfast.Controllers
         }
         public IActionResult Index()
         {
-            return View(context.Products.Include(a=>a.Category).ToList());
+            return View(context.Products.Include(a => a.Category).ToList());
         }
 
         public IActionResult Add()
@@ -103,21 +103,21 @@ namespace Breakfast.Controllers
             var categories = context.Categories.ToList();
             categories.Insert(0, new Category { Id = 0, Name = "Все" });
             var products = (from p in context.Products
-                           where p.Status == ProductStatus.Active
-                           select new ProductListViewModel
-                           {
-                               Id = p.Id,
-                               Name = p.Name,
-                               Image = p.Image,
-                               Price = p.Price,
-                               CategoryId = p.CategoryId,
-                               Stars = p.Stars,
-                               InBasket = client == null ? 0 : (from b in context.Basket where b.ProductId == p.Id && b.ClientId == client.Id select b.Qty).FirstOrDefault()
-                           }).ToList();
+                            where p.Status == ProductStatus.Active
+                            select new ProductListViewModel
+                            {
+                                Id = p.Id,
+                                Name = p.Name,
+                                Image = p.Image,
+                                Price = p.Price,
+                                CategoryId = p.CategoryId,
+                                Stars = p.Stars,
+                                InBasket = client == null ? 0 : (from b in context.Basket where b.ProductId == p.Id && b.ClientId == client.Id select b.Qty).FirstOrDefault()
+                            }).ToList();
 
+            var TotalInBasket = client == null ? 0 : (from b in context.Basket where b.ClientId == client.Id select b).Count();
 
-
-            return Json(new MainViewVodel { categories = categories, products = products });
+            return Json(new MainViewVodel { categories = categories, products = products, TotalInBasket = TotalInBasket });
         }
     }
 }

@@ -68,8 +68,8 @@ namespace Breakfast.Controllers
             }
 
             context.SaveChanges();
-
-            return Json(inBasket.Qty);
+            var totalInBasket = (from i in context.Basket where i.ClientId == client.Id select i).Count();
+            return Json(new { inBasket = inBasket.Qty, totalInBasket });
         }
 
         [HttpPost]

@@ -26,10 +26,16 @@ join OrderDtls d on h.Id = d.OrderHdrId
 where h.Id = 70
 
 update d
-set d.Status = 0
+set d.Status = 1
 from OrderDtls as d
 join OrderHdrs h on h.Id = d.OrderHdrId
-where DeliveryDateTime>'2020-04-20'
+where DeliveryDateTime<'2020-04-25'
 
 update  OrderHdrs set  Status = 3 where Id in(61, 76)
+update  OrderHdrs set  Status = 5 where DeliveryDateTime<'2020-04-25'
 
+delete from OrderDtls where OrderHdrId in (
+select Id from OrderHdrs where DeliveryDateTime>'2020-04-25'
+)
+
+delete from OrderHdrs where DeliveryDateTime>'2020-04-25'
